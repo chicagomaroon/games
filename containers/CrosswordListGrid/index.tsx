@@ -1,5 +1,4 @@
 import CrosswordPreview from '../../components/CrosswordPreview';
-import Link from 'next/link';
 import React from 'react';
 import styled from 'styled-components';
 import { Col, Grid, Row } from 'react-styled-flexboxgrid';
@@ -10,6 +9,7 @@ const Container = styled.div``;
 export interface CrosswordProps {
   name: string;
   date: string;
+  url: string;
   index: number;
 }
 

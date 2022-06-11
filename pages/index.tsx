@@ -10,6 +10,7 @@ import { recordPageview } from '../globals/utils';
 
 const Content = styled.div`
   padding-top: 4rem;
+  margin-bottom: 2rem;
 `;
 
 
@@ -36,19 +37,14 @@ const Index = (props: Props) => (
 );
 
 /*
- * Read the name, date, and number from a data file.
- * Previously this was all stored in the filename, but that didn't
- * support name punctuation.
+ * Read the date, name, and puzzle url from a data file.
  */
-async function processCWFile(fname: string, index: number) : Promise<CrosswordProps> {
-  const data = await import(`../crosswords/${fname}`);
-  return { name: data.name, date: data.publishDate, index: index };
-}
-
 Index.getInitialProps = async function () {
   const cwFiles = await import('../data.json');
-  const cwPreviews: CrosswordProps[] = await Promise.all(cwFiles.default.map((fname, i) =>
-    processCWFile(fname, i)));
+  const cwPreviews: CrosswordProps[] = await Promise.all(cwFiles.default.map((cwData, index) => {
+    const [date, name, url] = cwData
+    return { date, name, url, index }
+  }));
   cwPreviews.reverse();
 
   return { crosswords: cwPreviews };
