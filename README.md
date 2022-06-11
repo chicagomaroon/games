@@ -8,7 +8,7 @@
 ```
 ["YYYY-MM-DD", "{Crossword Title}", "{src URL}"]
 ```
-Don't forget to add a trailing comma on the line before!
+Don't forget to add a trailing comma on the line before!  
 4. Commit the file change.
 
 ## Requirements
